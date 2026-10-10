@@ -105,6 +105,13 @@ Data: [pluginworld.ai](https://www.pluginworld.ai)
 
 
 
+## 문서
+
+- [docs/STATUS.md](docs/STATUS.md): 검증된 것과 남은 것
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): 동작 구조와 데이터 경계
+- [docs/DECISIONS.md](docs/DECISIONS.md): 설계 결정과 이유
+- [CHANGELOG.md](CHANGELOG.md): 버전별 변경
+
 ## 라이선스
 
 MIT. [LICENSE](LICENSE)를 보세요. AI 코딩 에이전트가 이 저장소를 고칠 때 지킬 규칙은 [AGENTS.md](AGENTS.md)에 있습니다.

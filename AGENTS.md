@@ -2,6 +2,17 @@
 
 Guidance for AI coding agents (Claude Code, Codex, Cursor, …) working in this repository.
 
+## Read first
+
+| File | What it answers |
+|---|---|
+| `docs/STATUS.md` | What is verified, what is not yet, known limits, next candidates. **Start here.** |
+| `docs/ARCHITECTURE.md` | How a diagnosis flows from the band to the Worker and back; apply, ledger, data boundaries |
+| `docs/DECISIONS.md` | Why it is built this way (D1–D10). Check a decision's reason before changing it |
+| `CHANGELOG.md` | What each release changed. Add an entry with every version bump |
+
+Update `docs/STATUS.md` and `CHANGELOG.md` in the same commit as the change they describe.
+
 ## What this is
 
 `cstoken-finops` is a Claude Code **mod**: a plugin of function hooks (one hooks module, no build step). It is the customer-facing client of **CSTOKEN FinOps**, a sub-tool of CSTOKEN.
@@ -89,7 +100,7 @@ Errors come back as `{ error: { code, message } }`. `failureText()` maps them to
 
 ## Releasing
 
-1. Bump `version` in `.claude-plugin/plugin.json` and the plugin entry in `.claude-plugin/marketplace.json`.
+1. Bump `version` in `.claude-plugin/plugin.json` and the plugin entry in `.claude-plugin/marketplace.json`, and add a `CHANGELOG.md` entry.
 2. `claude plugin validate .` and `claude plugin test .` must both pass.
 3. Commit and push to `main`. Customers update with `claude plugin update cstoken-finops`.
 
