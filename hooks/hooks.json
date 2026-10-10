@@ -1,0 +1,4 @@
+{
+  "description": "CSTOKEN task diagnosis pane: model, effort and skill recommendations from the CSTOKEN Worker.",
+  "modules": ["./register.tsx"]
+}

@@ -1,0 +1,5 @@
+node_modules/
+.claude-plugin/types/
+tsconfig.json
+.env
+.dev.vars

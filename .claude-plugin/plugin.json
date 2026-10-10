@@ -1,0 +1,37 @@
+{
+  "name": "cstoken-finops",
+  "version": "0.2.0",
+  "description": "CSTOKEN FinOps for Claude Code (for CSTOKEN customers): describe a task and get the right Claude model, effort, skills and plugins for it (clef-flash classification), apply the pick in one press, and track what your turns cost.",
+  "author": { "name": "CSTOKEN", "url": "https://cstoken.net" },
+  "homepage": "https://github.com/haminmarket/cstoken-finops",
+  "repository": "https://github.com/haminmarket/cstoken-finops",
+  "keywords": ["finops", "cost", "model-routing", "effort", "recommendation", "cstoken"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "apiKey": {
+      "type": "string",
+      "title": "CSTOKEN FinOps organisation key",
+      "description": "The organisation key your CSTOKEN contact gave you. Empty: CSTOKEN_FINOPS_API_KEY from the environment. FinOps is for CSTOKEN customers and needs this key.",
+      "sensitive": true,
+      "default": ""
+    },
+    "endpoint": {
+      "type": "string",
+      "title": "CSTOKEN FinOps API URL",
+      "description": "Leave empty to use https://finops.cstoken.net (or CSTOKEN_FINOPS_ENDPOINT from the environment).",
+      "default": ""
+    },
+    "autoOpen": {
+      "type": "boolean",
+      "title": "Open the pane at session start",
+      "description": "Opens the CSTOKEN FinOps pane beside the transcript when the session starts. Off: the line above the prompt opens it on demand.",
+      "default": false
+    },
+    "shareInstalled": {
+      "type": "boolean",
+      "title": "Send installed skill names",
+      "description": "Sends the names and one-line descriptions of installed commands, skills and MCP servers so they can be ranked. Never file contents.",
+      "default": true
+    }
+  }
+}

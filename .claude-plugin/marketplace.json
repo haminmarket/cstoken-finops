@@ -1,0 +1,12 @@
+{
+  "name": "cstoken-finops",
+  "owner": { "name": "CSTOKEN", "url": "https://cstoken.net" },
+  "description": "CSTOKEN FinOps tools for Claude Code.",
+  "plugins": [
+    {
+      "name": "cstoken-finops",
+      "source": "./",
+      "description": "CSTOKEN FinOps: the right Claude model, effort, skills and plugins for each task, applied in one press, with spend tracking."
+    }
+  ]
+}
