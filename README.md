@@ -102,3 +102,9 @@ claude plugin test .
 - `types/index.d.ts`: API 타입과 상태 계약
 
 Data: [pluginworld.ai](https://www.pluginworld.ai)
+
+
+
+## 라이선스
+
+MIT. [LICENSE](LICENSE)를 보세요. AI 코딩 에이전트가 이 저장소를 고칠 때 지킬 규칙은 [AGENTS.md](AGENTS.md)에 있습니다.

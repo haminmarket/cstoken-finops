@@ -6,6 +6,8 @@
     {
       "name": "cstoken-finops",
       "source": "./",
+      "version": "0.2.1",
+      "license": "MIT",
       "description": "CSTOKEN FinOps: the right Claude model, effort, skills and plugins for each task, applied in one press, with spend tracking."
     }
   ]
