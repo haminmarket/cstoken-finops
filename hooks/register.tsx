@@ -135,11 +135,29 @@ async function record($: EngineInterface, settings: Settings, model: string, tok
 }
 
 /** The report /finops report prints and the pane shows. */
-async function report($: EngineInterface): Promise<string> {
+async function report($: EngineInterface, settings: Settings): Promise<string> {
   const stored: unknown = await $.store.get(LEDGER_KEY).catch(() => undefined)
   const ledger = isLedger(stored) ? stored : emptyLedger()
   const usage = await $.session.usage().catch(() => undefined)
-  return reportText(summarize(ledger, dayOf(Date.now())), usage?.cost?.usd ?? null, await read($, quota))
+  // Before any diagnosis this session, ask the Worker for today's count instead of leaving it out.
+  let today = await read($, quota)
+  if (!today) {
+    const { endpoint, apiKey } = await connection($, settings)
+    const res = apiKey
+      ? await $.http.fetch(endpointUrl(endpoint, '/v1/usage'), { headers: { authorization: `Bearer ${apiKey}` } }).catch(() => null)
+      : null
+    let answer: unknown
+    try {
+      answer = res?.ok ? (JSON.parse(res.text) as { quota?: unknown }).quota : undefined
+    } catch {
+      answer = undefined
+    }
+    if (isQuota(answer)) {
+      today = answer
+      await update($, quota, () => answer as typeof today)
+    }
+  }
+  return reportText(summarize(ledger, dayOf(Date.now())), usage?.cost?.usd ?? null, today)
 }
 
 /** Bumped by every diagnosis, so an answer that lands after a newer question is dropped. */
@@ -336,7 +354,7 @@ export const register: Register = (on, options) => {
   })
 
   on('command.run', { command: 'finops' }, async ($, e) => {
-    if (e.args.trim() === 'report') return { text: await report($) }
+    if (e.args.trim() === 'report') return { text: await report($, settings) }
     await update($, bandHidden, () => false)
     const opened = await $.ui.open({ id: PANE, title: TITLE, focus: true })
     const asked = e.args.trim()

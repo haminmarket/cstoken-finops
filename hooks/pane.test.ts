@@ -55,6 +55,9 @@ function world(
   on('http.fetch', ($, e) => {
     w.fetches.push({ url: e.url, auth: e.init?.headers?.authorization, body: JSON.parse(e.init?.body ?? 'null') })
     if (e.url.endsWith('/v1/models')) return { value: { status: 503, ok: false, headers: {}, text: '' } }
+    if (e.url.endsWith('/v1/usage')) {
+      return { value: { status: 200, ok: true, headers: {}, text: JSON.stringify({ tier: 'org', quota: { used: 7, limit: 1000, day: '2026-10-10' }, createdAt: '' }) } }
+    }
     return { value: { status: reply.status, ok: reply.status < 400, headers: {}, text: reply.text } }
   })
   on('command.run', ($, e) => {
@@ -223,6 +226,8 @@ test('a finished turn is booked into the ledger and the report', async ($, on) =
   const out = await $.command.run({ command: 'finops', args: 'report', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 160 } })
   expect(out.text).toContain('이번 세션: $0.42')
   expect(out.text).toContain('| Opus 5.5 | $0.10 | 1 |')
+  // Asked of the Worker, since nothing was diagnosed in this session yet.
+  expect(out.text).toContain('오늘 진단 7 / 1000회')
 })
 
 test('a spent daily quota says so and keeps the current model', async ($, on) => {

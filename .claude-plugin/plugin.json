@@ -1,6 +1,6 @@
 {
   "name": "cstoken-finops",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "CSTOKEN FinOps for Claude Code (for CSTOKEN customers): describe a task and get the right Claude model, effort, skills and plugins for it (clef-flash classification), apply the pick in one press, and track what your turns cost.",
   "author": { "name": "CSTOKEN", "url": "https://cstoken.net" },
   "homepage": "https://github.com/haminmarket/cstoken-finops",
